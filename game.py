@@ -1,5 +1,6 @@
 import pygame
 import random
+import os
 
 # Initialize Pygame
 pygame.init()
@@ -10,11 +11,18 @@ screen_height = 800
 screen = pygame.display.set_mode([screen_width, screen_height])
 pygame.display.set_caption("Rock-Paper-Scissors Simulation")
 
+#storing the paths of images to load them later
+current_directory = os.getcwd()
+paper_image_path = os.path.join(current_directory, "paper.png")
+rock_image_path = os.path.join(current_directory, "rock.png")
+scissors_image_path = os.path.join(current_directory, "scissors.png")
+
+
 # Define classes for sprites
 class Rock(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.image.load("rock.png").convert_alpha()
+        self.image = pygame.image.load(rock_image_path).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -33,10 +41,11 @@ class Rock(pygame.sprite.Sprite):
         if self.rect.top < 0 or self.rect.bottom > screen_height:
             self.speed_y = -self.speed_y
 
+
 class Paper(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.image =pygame.image.load("paper.png").convert_alpha()
+        self.image =pygame.image.load(paper_image_path).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -54,7 +63,7 @@ class Paper(pygame.sprite.Sprite):
 class Scissors(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.image =pygame.image.load("scissors.png").convert_alpha()
+        self.image =pygame.image.load(scissors_image_path).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
